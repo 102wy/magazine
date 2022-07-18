@@ -1,0 +1,45 @@
+$blue: rgb(27, 156, 252);
+.wrap {
+  width: 1400px;
+  height: 100%;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .title {
+    padding: 1rem 0;
+    font-size: 2rem;
+    cursor: default;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    label {
+      p {
+        padding: 0.5rem 0;
+      }
+      input {
+        width: 50vw;
+        height: 2rem;
+        border: 1px solid rgb(37, 204, 247);
+        transition: all 0.3s;
+        &:focus {
+          border: 2px solid $blue;
+        }
+      }
+    }
+    button {
+      background-color: $blue;
+      color: #fff;
+      margin-top: 1rem;
+      border: none;
+      height: 2rem;
+      transition: all 0.3s;
+      cursor: pointer;
+      &:hover {
+        background-color: darken($blue, 10%);
+      }
+    }
+  }
+}

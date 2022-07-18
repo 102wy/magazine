@@ -1,0 +1,101 @@
+$blue: rgb(27, 156, 252);
+$gray: rgb(194, 194, 194);
+.wrap {
+  width: 1400px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .title {
+    padding: 2rem 0 3rem 0;
+    font-size: 2rem;
+    cursor: default;
+    font-weight: normal;
+  }
+  .write {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    .left {
+      width: 40%;
+      height: 300px;
+      border: 2px solid $gray;
+      border-style: dashed;
+      border-radius: 0.5rem;
+      margin: 0 3%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: lighten($gray, 20%);
+      transition: all 0.3s;
+      &:hover {
+        border: 2px solid $blue;
+        border-style: dashed;
+      }
+      .ficture {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .camera {
+          color: darken($gray, 20%);
+          font-size: 4rem;
+          cursor: pointer;
+        }
+        p {
+          margin: 0.5rem 0;
+          text-align: center;
+          color: darken($gray, 20%);
+        }
+      }
+    }
+    .right {
+      width: 40%;
+      height: 300px;
+      margin: 0 3%;
+      .textform {
+        .textarea {
+          border: 2px solid $gray;
+          border-radius: 0.5rem;
+          width: 100%;
+          height: 300px;
+          resize: none;
+          font-size: 1.2rem;
+          padding: 1rem;
+          transition: all 0.3s;
+          &:focus {
+            border: 2px solid $blue;
+          }
+        }
+      }
+    }
+  }
+  .layout {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h3 {
+      padding: 3rem;
+      font-size: 1.5rem;
+      font-weight: normal;
+    }
+  }
+}
+
+// .submit {
+//   border: none;
+//   background-color: $gray;
+//   padding: 0.7rem 2rem;
+//   cursor: pointer;
+//   color: #333;
+//   border-radius: 0.5rem;
+//   transition: all 0.3s;
+//   &:hover {
+//     background-color: $blue;
+//     color: #fff;
+//   }
+// }
