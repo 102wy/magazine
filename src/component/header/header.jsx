@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './header.module.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from 'react-router-dom';
-// import styled from 'styled-components';
 
 const Header = () => {
     const navigate = useNavigate();

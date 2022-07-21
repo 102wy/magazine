@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import styles from './signup.module.scss';
-import { auth } from '../shared/firebase';
+import { auth } from '../../shared/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../shared/firebase';
+import { db } from '../../shared/firebase';
 import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
@@ -16,11 +16,27 @@ const Signup = () => {
 
     const signupFB = async (e) => {
         e.preventDefault();
+        if (id_ref.current.value == '') {
+            alert('아이디를 입력해 주세요');
+            return;
+        }
+        if (!(id_ref.current.value.includes('@'))) {
+            alert('이메일로 가입해주세요');
+            return;
+        }
+        if (pw_ref.current.value == '') {
+            alert('비밀번호를 입력해 주세요');
+            return;
+        }
+        if (pw_ref.current.value !== pw_re_ref.current.value) {
+            alert('비밀번호를 다시 확인해 주세요');
+            return
+        }
         const user = await createUserWithEmailAndPassword(
             auth,
             id_ref.current.value,
             pw_ref.current.value
-        );
+        )
         const user_doc = await addDoc(collection(db, "users"), {
             user_id: user.user.email,
             name: name_ref.current.value

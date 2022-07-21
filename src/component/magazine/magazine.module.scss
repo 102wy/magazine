@@ -1,11 +1,12 @@
 $blue: rgb(27, 156, 252);
+$gray: rgb(194, 194, 194);
 .wrap {
-  width: 1400px;
-  margin: 0 auto;
+  width: 1200px;
+  margin: 0 auto 4rem auto;
   .list {
   }
   .togo {
-    position: absolute;
+    position: fixed;
     right: 30px;
     bottom: 30px;
     width: 70px;

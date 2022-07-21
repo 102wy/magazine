@@ -1,35 +1,39 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './write.module.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCamera, faImage } from "@fortawesome/free-solid-svg-icons";
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../shared/firebase';
-import { useNavigate } from 'react-router-dom';
-import { addDoc, collection } from 'firebase/firestore';
-import { db, auth } from '../../shared/firebase';
+import { useNavigate, useParams } from 'react-router-dom';
+import { auth } from '../../shared/firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadUserFB } from '../../redux/modules/user';
-import { addMagazine, addMagazineFB } from '../../redux/modules/magazine';
+import { loadMagazineFB, updateMagazineFB } from '../../redux/modules/magazine';
 
-const Write = () => {
-    const [img, setImg] = useState(null);
+const Update = () => {
+    useEffect(() => {
+        dispatch(loadUserFB());
+        dispatch(loadMagazineFB());
+    }, []);
     const [layout, setLayout] = useState(null);
     const navigate = useNavigate();
     const text_ref = useRef();
     const button = document.querySelector('#button');
     const dispatch = useDispatch();
     const user = auth.currentUser;
-    useEffect(() => {
-        dispatch(loadUserFB());
-    }, []);
-    const data = useSelector(state => state.user.users);
-    const name = data.map(item => item.user_id == user.email ? item.name : 'user');
+    const id = useParams();
+    const user_data = useSelector(state => state.user.users);
+    const name = user_data.map(item => item.user_id == user.email ? item.name : 'user');
+    const magazine_data = useSelector(state => state.magazine.post);
+    const data = magazine_data.filter(item => item.id == id.id);
+    const img_url = data[0].img_url;
+    const [img, setImg] = useState(img_url);
     const uploadFB = async (e) => {
         const uploaded_file = await uploadBytes(ref(storage, `images/${e.target.files[0].name}`), e.target.files[0]);
         const file_url = await getDownloadURL(uploaded_file.ref);
-        setImg({ url: file_url });
+        setImg(file_url);
     }
-    const uploadPost = async () => {
+    const updatePost = async () => {
         let toDay = new Date();
         let year = toDay.getFullYear();
         let month = ("0" + toDay.getMonth()).slice(-2);
@@ -52,15 +56,8 @@ const Write = () => {
             alert('레이아웃을 선택하세요');
             button.disabled = false
         } else {
-            // const post_doc = await addDoc(collection(db, "post"), {
-            //     img_url: img.url,
-            //     text: text_ref.current.value,
-            //     layout: layout,
-            //     time: now,
-            //     user: name,
-            // });
-            dispatch(addMagazineFB({
-                img_url: img.url,
+            dispatch(updateMagazineFB(id, {
+                img_url: img,
                 text: text_ref.current.value,
                 layout: layout,
                 time: now,
@@ -85,7 +82,7 @@ const Write = () => {
                 </div>
                 <div className={styles.right}>
                     <form action="" className={styles.textform}>
-                        <textarea name="" id="" cols="30" rows="10" className={styles.textarea} placeholder="내용을 입력해주세요" ref={text_ref}></textarea>
+                        <textarea name="" id="" cols="30" rows="10" className={styles.textarea} placeholder="내용을 입력해주세요" ref={text_ref} defaultValue={data[0].text}></textarea>
                     </form>
                 </div>
             </div>
@@ -98,14 +95,14 @@ const Write = () => {
                     </div>
                     <div className={styles.img_area}>
                         <div className={styles.img}>
-                            {img == null ? <FontAwesomeIcon icon={faImage} className={styles.img_icon} /> : <img src={img.url} alt="업로드 이미지" className={styles.image} />}
+                            <img src={img} alt="업로드 이미지" className={styles.image} />
                         </div>
                     </div>
                 </div>
                 <div className={styles.right_layout}>
                     <div className={styles.img_area}>
                         <div className={styles.img}>
-                            {img == null ? <FontAwesomeIcon icon={faImage} className={styles.img_icon} /> : <img src={img.url} alt="업로드 이미지" className={styles.image} />}
+                            <img src={img} alt="업로드 이미지" className={styles.image} />
                         </div>
                     </div>
                     <div className={styles.input_area}>
@@ -120,14 +117,14 @@ const Write = () => {
                     </div>
                     <div className={styles.img_area}>
                         <div className={styles.img}>
-                            {img == null ? <FontAwesomeIcon icon={faImage} className={styles.img_icon} /> : <img src={img.url} alt="업로드 이미지" className={styles.image} />}
+                            <img src={img} alt="업로드 이미지" className={styles.image} />
                         </div>
                     </div>
                 </div>
             </div>
-            <button id="button" className={styles.button} onClick={uploadPost}>게시글 작성</button>
+            <button id="button" className={styles.button} onClick={updatePost}>게시글 작성</button>
         </div >
     );
 };
 
-export default Write;
+export default Update;

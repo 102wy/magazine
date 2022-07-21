@@ -1,0 +1,178 @@
+$blue: rgb(27, 156, 252);
+$gray: rgb(194, 194, 194);
+.left {
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .user {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 1.5rem 0;
+      .user_img {
+        background: url("https://firebasestorage.googleapis.com/v0/b/magazine-c3f45.appspot.com/o/images%2Ficon.png?alt=media&token=bd6b83db-26df-49ad-aed8-acda7894e149")
+          no-repeat center;
+        width: 2.5rem;
+        height: 2.5rem;
+        background-size: cover;
+      }
+      p {
+        padding: 0 1rem;
+      }
+    }
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      button {
+        border: none;
+        padding: 0.5rem 1rem;
+        background: $blue;
+        color: #fff;
+        cursor: pointer;
+        margin: 0 0.2rem;
+      }
+    }
+  }
+  .section {
+    width: 100%;
+    height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .imgbox {
+      width: 45%;
+      height: 100%;
+      background-color: $blue;
+    }
+    .textbox {
+      width: 45%;
+      height: 100%;
+      //   background-color: $gray;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      p {
+        cursor: default;
+      }
+    }
+  }
+}
+
+.right {
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .user {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 1.5rem 0;
+      .user_img {
+        background: url("https://firebasestorage.googleapis.com/v0/b/magazine-c3f45.appspot.com/o/images%2Ficon.png?alt=media&token=bd6b83db-26df-49ad-aed8-acda7894e149")
+          no-repeat center;
+        width: 2.5rem;
+        height: 2.5rem;
+        background-size: cover;
+      }
+      p {
+        padding: 0 1rem;
+      }
+    }
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      button {
+        border: none;
+        padding: 0.5rem 1rem;
+        background: $blue;
+        color: #fff;
+        cursor: pointer;
+        margin: 0 0.2rem;
+      }
+    }
+  }
+  .section {
+    width: 100%;
+    height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    .imgbox {
+      width: 45%;
+      height: 100%;
+    }
+    .textbox {
+      width: 45%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      p {
+        cursor: default;
+      }
+    }
+  }
+}
+.bottom {
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .user {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 1.5rem 0;
+      .user_img {
+        background: url("https://firebasestorage.googleapis.com/v0/b/magazine-c3f45.appspot.com/o/images%2Ficon.png?alt=media&token=bd6b83db-26df-49ad-aed8-acda7894e149")
+          no-repeat center;
+        width: 2.5rem;
+        height: 2.5rem;
+        background-size: cover;
+      }
+      p {
+        padding: 0 1rem;
+      }
+    }
+    .buttons {
+      display: flex;
+      flex-direction: row;
+      button {
+        border: none;
+        padding: 0.5rem 1rem;
+        background: $blue;
+        color: #fff;
+        cursor: pointer;
+        margin: 0 0.2rem;
+      }
+    }
+  }
+  .section {
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    .imgbox {
+      width: 100%;
+      height: 80%;
+    }
+    .textbox {
+      width: 45%;
+      height: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      p {
+        cursor: default;
+      }
+    }
+  }
+}
